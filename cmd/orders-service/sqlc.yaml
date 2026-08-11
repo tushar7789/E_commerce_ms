@@ -1,0 +1,11 @@
+version: "2"
+sql:
+  - engine: "sqlite"
+    queries: "cmd/orders-service/data/db/query"
+    schema: "cmd/orders-service/data/db/migrations"
+    gen:
+      go:
+        package: "db"
+        out: "cmd/orders-service/data/db/out"
+        emit_json_tags: true
+        emit_interface: true #generate queries interface
