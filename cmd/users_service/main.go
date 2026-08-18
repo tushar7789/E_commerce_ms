@@ -26,7 +26,7 @@ func main() {
 	}
 	defer db.Close()
 
-	logger.Info("connected to database", "dns", cfg.db.dsn)
+	logger.Info("connected to users database", "dns", cfg.db.dsn)
 
 	api := application{
 		config: cfg,

@@ -25,15 +25,15 @@ func (app *application) mount() http.Handler {
 	// processing should be stopped.
 	r.Use(middleware.Timeout(60 * time.Second))
 
-	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+	r.Get("/users//health", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("all good on users server!"))
 	})
 
 	authService := NewService(db.New(app.db), jwt_cfg.AccessSecret, jwt_cfg.RefreshSecret, jwt_cfg.AccessTTL, jwt_cfg.RefreshTTL)
 	authHandler := NewHandler(authService)
 	r.Post("/users", authHandler.CreateUser)
-	r.Post("/login", authHandler.Login)
-	r.Post("/refresh", authHandler.Refresh)
+	r.Post("/users/login", authHandler.Login)
+	r.Post("/users/refresh", authHandler.Refresh)
 
 	return r
 }
